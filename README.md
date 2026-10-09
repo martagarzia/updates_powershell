@@ -32,6 +32,7 @@ The script also prints a final status line (`Esito Action1: ...`) and how long t
 | `single_update/chrome_update.ps1` | Google Chrome (enterprise MSI) |
 | `single_update/python_update.ps1` | Python for Windows |
 | `single_update/winrar_update.ps1` | WinRAR |
+| `single_update/visualstudio_community_update.ps1` | Visual Studio Community 2026 |
 
 `msc/test_action1.ps1` only prints the computer name and the current time, then exits `0`.
 

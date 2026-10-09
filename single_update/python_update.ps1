@@ -1,5 +1,15 @@
+# $ErrorActionPreference è una variabile predefinita in PowerShell. 
+# se stop è una stringa, come fa $ErrorActionPreference a capire che cosa fare?
+    # $ErrorActionPreference porta con se un vincolo di tipo della variabile: System.Management.Automation.ActionPreference.
+    # quando vede che il tipo a destra dell' = è una stringa, chiama la conversiona interna: LanguagePrimitives.ConvertTo.
+    # Per una stringa, la conversione equivale a un Enum.Parse: cerca un nome dell’enumerato uguale al testo, senza distinguere maiuscole e minuscole.
+    # "Stop" coincide con il membro Stop, quindi il valore salvato è l’enumerato, non la stringa.
+    # Se il testo non è un membro valido, l’assegnazione fallisce. Per esempio "Fermati" non funzionerebbe.
+    # Puoi vedere il vincolo sulla variabile predefinita con:(Get-Variable ErrorActionPreference).Attributes
 $ErrorActionPreference = "Stop"
+# $ProgressPreference è anch’essa vincolata al tipo System.Management.Automation.ActionPreference. La stringa "SilentlyContinue" viene convertita nel membro SilentlyContinue di quell’enumerato.
 $ProgressPreference = "SilentlyContinue"
+
 
 try { [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12 } catch { }
 
